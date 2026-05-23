@@ -6,14 +6,14 @@ module name_generator (
     output reg [7:0] char_out 
 );
 
-    reg [2:0] counter; // 3-bit counter to cycle from 0 to 3
+    reg [2:0] counter;
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             counter <= 3'd0;
-            char_out <= 8'd0; // Output nothing (Null) during reset
+            char_out <= 8'd0; 
         end else begin
-            // Act like a small ROM to output the correct letter
+            
             case (counter)
                 3'd0: char_out <= "E"; 
                 3'd1: char_out <= "X"; 
@@ -25,11 +25,11 @@ module name_generator (
                 default: char_out <= 8'd0;
             endcase
 
-            // Update the counter
+            
             if (counter == 3'd6) begin
-                counter <= 3'd0; // Reset counter after the last letter
+                counter <= 3'd0; 
             end else begin
-                counter <= counter + 1; // Move to the next letter
+                counter <= counter + 1; 
             end
         end
     end
